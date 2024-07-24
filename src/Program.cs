@@ -2,6 +2,9 @@ using Anime_figures_backend.src.Enums;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Anime_figures_backend.src.Databases;
+using Anime_figures_backend.src.Abstractions;
+using Anime_figures_backend.src.Repositories;
+using Anime_figures_backend.src.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +33,10 @@ builder.Services.AddDbContext<DatabaseContext>();// inject the database context
 
 builder.Services.AddControllers();
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 
 
 var app = builder.Build();
