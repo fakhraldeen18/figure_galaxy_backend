@@ -13,6 +13,7 @@ public class CategoriesController : CustomController
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<CategoryReadDto>> FindAll()
     {
         return Ok(_categoryService.FindAll());
