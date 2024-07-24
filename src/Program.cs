@@ -1,12 +1,14 @@
+using Anime_figures_backend.src.Enums;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
-using sda_onsite_2_csharp_backend_teamwork.src.Databases;
+using Anime_figures_backend.src.Databases;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 var _config = builder.Configuration;
 var dataSourceBuilder = new NpgsqlDataSourceBuilder(@$"Host={_config["Db:Host"]};Username={_config["Db:Username"]};Database={_config["Db:Database"]};Password={_config["Db:Password"]};Port={_config["Db:Port"]}");
+dataSourceBuilder.MapEnum<Role>();
 
 var dataSource = dataSourceBuilder.Build();
 builder.Services.AddDbContext<DatabaseContext>((options) =>
