@@ -25,7 +25,7 @@ public class ProductsController : CustomController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<ProductReadDto> FindOne(Guid Id)
     {
-        var FindProduct = _productService.FindOne(Id);
+        ProductReadDto? FindProduct = _productService.FindOne(Id);
         if (FindProduct == null) return NotFound();
         return Ok(FindProduct);
     }
@@ -35,7 +35,7 @@ public class ProductsController : CustomController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<ProductReadDto> CreateOne([FromBody] ProductCreateDto NewProduct)
     {
-        var CreatedProduct = _productService.CreateOne(NewProduct);
+        ProductReadDto? CreatedProduct = _productService.CreateOne(NewProduct);
         if (CreatedProduct == null) return BadRequest();
         return CreatedAtAction(nameof(CreateOne), CreatedProduct);
     }
@@ -45,7 +45,7 @@ public class ProductsController : CustomController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult DeleteOne(Guid Id)
     {
-        var FindProduct = _productService.FindOne(Id);
+        ProductReadDto? FindProduct = _productService.FindOne(Id);
         if (FindProduct == null) return NotFound();
         _productService.DeleteOne(Id);
         return NoContent();
@@ -56,9 +56,9 @@ public class ProductsController : CustomController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<ProductReadDto> UpdateOne(Guid Id, [FromBody] ProductUpdateDto UpdateProduct)
     {
-        var findProduct = _productService.FindOne(Id);
+        ProductReadDto? findProduct = _productService.FindOne(Id);
         if (findProduct == null) return NotFound();
-        _productService.UpdateOne(Id, UpdateProduct);
-        return Accepted(findProduct);
+        ProductReadDto? UpdatedProduct = _productService.UpdateOne(Id, UpdateProduct);
+        return Accepted(UpdatedProduct);
     }
 }

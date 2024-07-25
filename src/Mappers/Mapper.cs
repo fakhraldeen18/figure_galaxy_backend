@@ -13,5 +13,8 @@ public class Mapper : Profile
 
         CreateMap<Product, ProductReadDto>();
         CreateMap<ProductCreateDto, Product>();
+
+        CreateMap<Inventory, InventoryReadDto>();
+        CreateMap<InventoryCreateDto, Inventory>();
     }
 }

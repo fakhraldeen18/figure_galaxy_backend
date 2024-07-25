@@ -44,7 +44,7 @@ public class CategoriesController : CustomController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult DeleteOne(Guid Id)
     {
-        var FindCategory = _categoryService.FindOne(Id);
+        CategoryReadDto? FindCategory = _categoryService.FindOne(Id);
         if (FindCategory == null) return NotFound();
         _categoryService.DeleteOne(Id);
         return NoContent();
@@ -55,9 +55,9 @@ public class CategoriesController : CustomController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<CategoryReadDto> UpdateOne(Guid Id, [FromBody] CategoryUpdateDto UpdateCategory)
     {
-        var FindCategory = _categoryService.FindOne(Id);
+        CategoryReadDto? FindCategory = _categoryService.FindOne(Id);
         if (FindCategory == null) return NotFound();
-        var UpdatedCategory = _categoryService.UpdateOne(Id, UpdateCategory);
+        CategoryReadDto? UpdatedCategory = _categoryService.UpdateOne(Id, UpdateCategory);
         return Accepted(UpdatedCategory);
 
     }

@@ -25,10 +25,10 @@ public class ProductRepository : IProductRepository
 
     public Product? DeleteOne(Guid id)
     {
-        Product? findProduct = FindOne(id);
-        _products.Remove(findProduct!);
+        Product? FindProduct = FindOne(id);
+        _products.Remove(FindProduct!);
         _databaseContext.SaveChanges();
-        return findProduct;
+        return FindProduct;
     }
 
     public IEnumerable<Product> FindAll()
@@ -39,8 +39,8 @@ public class ProductRepository : IProductRepository
 
     public Product? FindOne(Guid id)
     {
-        Product? findProduct = _products.FirstOrDefault(p => p.Id == id);
-        return findProduct;
+        Product? FindProduct = _products.FirstOrDefault(p => p.Id == id);
+        return FindProduct;
     }
 
     public Product UpdateOne(Product UpdatedProduct)
