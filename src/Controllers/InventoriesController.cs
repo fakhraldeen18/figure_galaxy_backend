@@ -53,6 +53,8 @@ public class InventoriesController : CustomController
     }
 
     [HttpPatch("{Id}")]
+    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<InventoryReadDto> UpdateOne(Guid Id, [FromBody] InventoryUpdateDto UpdateInventory)
     {
         InventoryReadDto? FindInventory = _inventoryService.FindOne(Id);

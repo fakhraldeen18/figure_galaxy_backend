@@ -16,5 +16,8 @@ public class Mapper : Profile
 
         CreateMap<Inventory, InventoryReadDto>();
         CreateMap<InventoryCreateDto, Inventory>();
+
+        CreateMap<Image, ImageReadDto>();
+        CreateMap<ImageCreateDto, Image>();
     }
 }
