@@ -35,8 +35,8 @@ public class ProductsController : CustomController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<ProductReadDto> CreateOne([FromBody] ProductCreateDto NewProduct)
     {
+        if (NewProduct == null) return BadRequest();
         ProductReadDto? CreatedProduct = _productService.CreateOne(NewProduct);
-        if (CreatedProduct == null) return BadRequest();
         return CreatedAtAction(nameof(CreateOne), CreatedProduct);
     }
 

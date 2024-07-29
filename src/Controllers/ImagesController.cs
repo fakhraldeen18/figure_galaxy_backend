@@ -36,8 +36,8 @@ public class ImagesController : CustomController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<ImageReadDto> CreateOne([FromBody] ImageCreateDto NewImage)
     {
+        if (NewImage == null) return BadRequest();
         ImageReadDto? CreateImage = _imageService.CreateOne(NewImage);
-        if (CreateImage == null) return BadRequest();
         return CreatedAtAction(nameof(CreateOne), CreateImage);
     }
 

@@ -19,5 +19,8 @@ public class Mapper : Profile
 
         CreateMap<Image, ImageReadDto>();
         CreateMap<ImageCreateDto, Image>();
+
+        CreateMap<User, UserReadDto>();
+        CreateMap<UserCreateDto, User>();
     }
 }

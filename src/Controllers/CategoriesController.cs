@@ -24,8 +24,8 @@ public class CategoriesController : CustomController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<CategoryReadDto> CreateOne([FromBody] CategoryCreateDto NewCategory)
     {
+        if (NewCategory == null) return BadRequest();
         CategoryReadDto? CreatedCategory = _categoryService.CreateOne(NewCategory);
-        if (CreatedCategory == null) return BadRequest();
         return CreatedAtAction(nameof(CreateOne), CreatedCategory);
     }
 

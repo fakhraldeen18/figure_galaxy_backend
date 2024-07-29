@@ -36,8 +36,8 @@ public class InventoriesController : CustomController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<InventoryReadDto> CreateOne([FromBody] InventoryCreateDto NewInventory)
     {
+        if (NewInventory == null) return BadRequest();
         InventoryReadDto? CreatedInventory = _inventoryService.CreateOne(NewInventory);
-        if (CreatedInventory == null) return BadRequest();
         return CreatedAtAction(nameof(CreateOne), CreatedInventory);
     }
 
