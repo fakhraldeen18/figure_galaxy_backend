@@ -20,7 +20,12 @@ public class Mapper : Profile
         CreateMap<Image, ImageReadDto>();
         CreateMap<ImageCreateDto, Image>();
 
-        CreateMap<User, UserReadDto>();
+        CreateMap<User, UserReadDto>(); 
         CreateMap<UserCreateDto, User>();
+
+        CreateMap<OrderItem, OrderItemReadDto>();
+        CreateMap<OrderItemCreateDto, OrderItem>();
+
+        CreateMap<Order, OrderReadDto>();
     }
 }

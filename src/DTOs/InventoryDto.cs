@@ -23,3 +23,7 @@ public class InventoryUpdateDto
     public string Size { get; set; }
     public int Price { get; set; }
 }
+public class InventoryUpdateQuantityDto
+{
+    public int Quantity { get; set; }
+}

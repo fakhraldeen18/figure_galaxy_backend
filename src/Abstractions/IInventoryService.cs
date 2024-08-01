@@ -9,5 +9,6 @@ public interface IInventoryService
     public InventoryReadDto? CreateOne(InventoryCreateDto NewInventory);
     public bool DeleteOne(Guid id);
     public InventoryReadDto? UpdateOne(Guid id, InventoryUpdateDto UpdateInventory);
+    public InventoryReadDto? UpdateQuantity(Guid id, int Quantity);
 
 }

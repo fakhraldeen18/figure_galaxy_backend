@@ -24,11 +24,11 @@ public class InventoryService : IInventoryService
         return _mapper.Map<InventoryReadDto>(CreatedInventory);
     }
 
-    public bool DeleteOne(Guid id)
+    public bool DeleteOne(Guid Id)
     {
-        Inventory? FindInventory = _inventoryRepository.FindOne(id);
+        Inventory? FindInventory = _inventoryRepository.FindOne(Id);
         if (FindInventory == null) return false;
-        _inventoryRepository.DeleteOne(id);
+        _inventoryRepository.DeleteOne(Id);
         return true;
     }
 
@@ -39,16 +39,16 @@ public class InventoryService : IInventoryService
         return ReadInventories;
     }
 
-    public InventoryReadDto? FindOne(Guid id)
+    public InventoryReadDto? FindOne(Guid Id)
     {
-        Inventory? FindInventory = _inventoryRepository.FindOne(id);
-        if(FindInventory == null) return null;
+        Inventory? FindInventory = _inventoryRepository.FindOne(Id);
+        if (FindInventory == null) return null;
         return _mapper.Map<InventoryReadDto>(FindInventory);
     }
 
-    public InventoryReadDto? UpdateOne(Guid id, InventoryUpdateDto UpdateInventory)
+    public InventoryReadDto? UpdateOne(Guid Id, InventoryUpdateDto UpdateInventory)
     {
-        Inventory? Inventory = _inventoryRepository.FindOne(id);
+        Inventory? Inventory = _inventoryRepository.FindOne(Id);
         if (Inventory == null) return null;
         Inventory.ProductId = UpdateInventory.ProductId;
         Inventory.Quantity = UpdateInventory.Quantity;
@@ -56,5 +56,14 @@ public class InventoryService : IInventoryService
         Inventory.Size = UpdateInventory.Size;
         _inventoryRepository.UpdateOne(Inventory);
         return _mapper.Map<InventoryReadDto>(Inventory);
+    }
+
+    public InventoryReadDto? UpdateQuantity(Guid Id, int Quantity)
+    {
+        var findInventory = _inventoryRepository.FindOne(Id);
+        if (findInventory == null) return null;
+        findInventory.Quantity = Quantity;
+        var UpdatedInventory = _inventoryRepository.UpdateOne(findInventory);
+        return _mapper.Map<InventoryReadDto>(UpdatedInventory);
     }
 }

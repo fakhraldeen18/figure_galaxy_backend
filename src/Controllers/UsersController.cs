@@ -3,10 +3,10 @@ using Anime_figures_backend.src.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anime_figures_backend.src.Controllers;
-public class UserController : CustomController
+public class UsersController : CustomController
 {
     private readonly IUserService _userService;
-    public UserController(IUserService userService)
+    public UsersController(IUserService userService)
     {
         _userService = userService;
     }
