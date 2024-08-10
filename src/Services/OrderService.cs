@@ -47,7 +47,6 @@ public class OrderService : IOrderService
                 TotalPrice = Item.Quantity * inventory.Price
             };
             int UpdatedQuantity = inventory.Quantity - Item.Quantity;
-            Console.WriteLine($"UpdatedQuantity {UpdatedQuantity}");
             _inventoryService.UpdateQuantity(inventory.Id, UpdatedQuantity);
             order.Status = "Succeed";
             _orderItemService.CreateOne(orderItem);
@@ -58,8 +57,8 @@ public class OrderService : IOrderService
 
     public IEnumerable<OrderReadDto> FindAll()
     {
-        var orders = _orderRepository.FindAll();
-        var readerOrder = orders.Select((order) => _mapper.Map<OrderReadDto>(order));
+        IEnumerable<Order> orders = _orderRepository.FindAll();
+        IEnumerable<OrderReadDto> readerOrder = _mapper.Map<IEnumerable<OrderReadDto>>(orders);
         return readerOrder;
     }
 }

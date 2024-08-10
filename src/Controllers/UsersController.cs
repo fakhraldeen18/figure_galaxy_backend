@@ -1,5 +1,6 @@
 using Anime_figures_backend.src.Abstractions;
 using Anime_figures_backend.src.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anime_figures_backend.src.Controllers;
@@ -13,6 +14,7 @@ public class UsersController : CustomController
 
 
     [HttpGet]
+    [Authorize(Roles ="Admin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<UserReadDto>> FindAll()
     {
