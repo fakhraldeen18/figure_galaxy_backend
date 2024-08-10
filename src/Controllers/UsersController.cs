@@ -14,7 +14,7 @@ public class UsersController : CustomController
 
 
     [HttpGet]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin , SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<UserReadDto>> FindAll()
     {
@@ -54,6 +54,7 @@ public class UsersController : CustomController
     }
 
     [HttpPatch("{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<UserReadDto> UpdateOne(Guid Id, [FromBody] UserUpdateDto UpdateUser)
@@ -65,6 +66,7 @@ public class UsersController : CustomController
     }
 
     [HttpPatch("updateRole/{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<UserReadDto> UpdateRole(Guid Id, [FromBody] UserUpdateRoleDto UserUpdate)
@@ -76,6 +78,7 @@ public class UsersController : CustomController
     }
 
     [HttpDelete("{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult DeleteOne(Guid Id)

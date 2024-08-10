@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Anime_figures_backend.src.Enums;
 
 namespace Anime_figures_backend.src.DTOs;
@@ -19,22 +20,34 @@ public class UserReadDto
 
 public class UserCreateDto
 {
+    [Required]
     public string Name { get; set; }
+    [Required]
     public string Password { get; set; }
+    [Required]
+    [EmailAddress]
     public string Email { get; set; }
+    [Required]
     public string Phone { get; set; }
 }
 
 public class UserLogInDto
 {
+    [Required]
+    [EmailAddress]
     public string Email { get; set; }
+    [Required]
     public string Password { get; set; }
 }
 
 public class UserUpdateDto
 {
+    [Required]
     public string Name { get; set; }
+    [Required]
+    [EmailAddress]
     public string Email { get; set; }
+    [Required]
     public string Phone { get; set; }
 }
 public class UserUpdateRoleDto

@@ -1,5 +1,6 @@
 using Anime_figures_backend.src.Abstractions;
 using Anime_figures_backend.src.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anime_figures_backend.src.Controllers;
@@ -20,6 +21,7 @@ public class CategoriesController : CustomController
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin , SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<CategoryReadDto> CreateOne([FromBody] CategoryCreateDto NewCategory)
@@ -40,6 +42,7 @@ public class CategoriesController : CustomController
     }
 
     [HttpDelete("{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult DeleteOne(Guid Id)
@@ -51,6 +54,7 @@ public class CategoriesController : CustomController
     }
 
     [HttpPatch("{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<CategoryReadDto> UpdateOne(Guid Id, [FromBody] CategoryUpdateDto UpdateCategory)

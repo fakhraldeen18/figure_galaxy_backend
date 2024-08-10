@@ -1,5 +1,6 @@
 using Anime_figures_backend.src.Abstractions;
 using Anime_figures_backend.src.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anime_figures_backend.src.Controllers;
@@ -32,6 +33,7 @@ public class InventoriesController : CustomController
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin , SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<InventoryReadDto> CreateOne([FromBody] InventoryCreateDto NewInventory)
@@ -42,6 +44,7 @@ public class InventoriesController : CustomController
     }
 
     [HttpDelete("{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult DeleteOne(Guid Id)
@@ -53,6 +56,7 @@ public class InventoriesController : CustomController
     }
 
     [HttpPatch("{Id}")]
+    [Authorize(Roles = "SuperAdmin")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<InventoryReadDto> UpdateOne(Guid Id, [FromBody] InventoryUpdateDto UpdateInventory)
